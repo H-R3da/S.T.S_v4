@@ -26,20 +26,22 @@ public class Cube_Lerping_copy : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
             float W_middle = Screen.width / 2;
-
-            if ((touch.position.x > W_middle) && touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Began)
             {
-                newPosition = positionA;
-                oldPosition = positionB;
-                Debug.Log("Right");
-            }
+                if ((touch.position.x > W_middle))
+                {
+                    newPosition = positionA;
+                    oldPosition = positionB;
+                    Debug.Log("Right");
+                }
 
-            if ((touch.position.x < W_middle) && touch.phase == TouchPhase.Began)
-            {
-                newPosition = positionB;
-                oldPosition = positionA;
-                Debug.Log("Left");
+                if ((touch.position.x < W_middle))
+                {
+                    newPosition = positionB;
+                    oldPosition = positionA;
+                    Debug.Log("Left");
 
+                }
             }
         }
         transform.position = Vector3.MoveTowards(transform.position, newPosition, smooth * Time.deltaTime);
