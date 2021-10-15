@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Cube_Lerping : MonoBehaviour
 {
+    public Vector3[,] positionArray = new[,] {
+        { new Vector3(2.25f, -0.546f, 5.859375f), new Vector3(1.125f, -1.193f, 5.859375f), new Vector3(0f,-1.84f,5.859375f), new Vector3(-1.125f,-2.487f,5.859375f), new Vector3(-2.25f,-3.1340000000000003f,5.859375f) },
+        { new Vector3(2.25f,-3.1340000000000003f,5.859375f), new Vector3(1.125f,-2.487f,5.859375f), new Vector3(0f,-1.84f,5.859375f), new Vector3(-1.125f,-1.193f,5.859375f), new Vector3(-2.25f,-0.546f,5.859375f) } };
 
     public GameObject cube;
     public Vector3 positionA;
@@ -15,6 +18,7 @@ public class Cube_Lerping : MonoBehaviour
     void Start()
     {
         cube = this.gameObject.transform.GetChild(0).gameObject;
+        Debug.Log(cube.GetComponent<Cube_properties>().position);
     }
 
     // Update is called once per frame
@@ -22,7 +26,6 @@ public class Cube_Lerping : MonoBehaviour
     {
         if (Input.touchCount > 0)
         {
-
             Touch touch = Input.GetTouch(0);
             float W_middle = Screen.width / 2;
 
@@ -38,6 +41,14 @@ public class Cube_Lerping : MonoBehaviour
                 Debug.Log("Left");
             }
         }
-        cube.transform.position = Vector3.MoveTowards(cube.transform.position, newPosition, Time.deltaTime * smooth);
+        if (cube.transform.position != newPosition)
+        {
+            cube.transform.position = Vector3.MoveTowards(cube.transform.position, newPosition, Time.deltaTime * smooth);
+            //Debug.Log("is moving");
+        }
+        else
+        {
+            //Debug.Log("stopped mobing");
+        }
     }
 }
