@@ -30,13 +30,10 @@ public class Shapes_Move : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             shapes_aux = this.gameObject.transform.GetChild(i).gameObject;
-            shapes_positions_aux = shapes_aux.GetComponent<Shape_Properties>().position;
-            shapes_positions[i, 0] = shapes_positions_aux[0];
-            shapes_positions[i, 1] = shapes_positions_aux[1];
-            shapes[shapes_positions[i, 0], shapes_positions[i, 1] - 1] = shapes_aux;
+            shapes[shapes_aux.GetComponent<Shape_Properties>().position[0], shapes_positions[i, 1] - 1] = shapes_aux;
             if (shapes_positions[i, 1] == 2)
             {
-                shapes[shapes_positions[i, 0] + 1, shapes_positions[i, 1]] = shapes_aux;
+                shapes[shapes_aux.GetComponent<Shape_Properties>().position[0] + 1, shapes_aux.GetComponent<Shape_Properties>().position[1]] = shapes_aux;
             }
         }
     }
