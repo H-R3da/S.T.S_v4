@@ -23,13 +23,6 @@ public class Cube_Lerping : MonoBehaviour
         cube = this.gameObject.transform.GetChild(0).gameObject;
         position = cube.GetComponent<Cube_properties>().position;
         Debug.Log(position);
-        callerIds.Enqueue(new int[] { 1, 3 });
-        callerIds.Enqueue(new int[] { 1, 3 });
-        callerIds.Enqueue(new int[] { 1, 3 });
-        callerIds.Enqueue(new int[] { 1, 3 });
-
-        foreach (var id in callerIds)
-            Debug.Log(id); //prints 1234
     }
 
     // Update is called once per frame
