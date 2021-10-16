@@ -44,23 +44,23 @@ public class Cube_Lerping : MonoBehaviour
             {
                 if (touch.position.x > W_middle && touch.position.y > H_middle)
                 {
-                    callerIds.Enqueue(new int[] { 0, 1 });
-                    Debug.Log("Right");
+                    callerIds.Enqueue(new int[] { 0, -1 });
+                    Debug.Log("Up_Right");
                 }
                 if (touch.position.x > W_middle && touch.position.y < H_middle)
                 {
-                    callerIds.Enqueue(new int[] { 1, 1 });
-                    Debug.Log("Right");
+                    callerIds.Enqueue(new int[] { 1, -1 });
+                    Debug.Log("Down_Right");
                 }
                 if (touch.position.x < W_middle && touch.position.y > H_middle)
                 {
-                    callerIds.Enqueue(new int[] { 1, -1 });
-                    Debug.Log("left");
+                    callerIds.Enqueue(new int[] { 1, 1 });
+                    Debug.Log("Up_left");
                 }
                 if (touch.position.x < W_middle && touch.position.y < H_middle)
                 {
-                    callerIds.Enqueue(new int[] { 0, -1 });
-                    Debug.Log("Left");
+                    callerIds.Enqueue(new int[] { 0, 1 });
+                    Debug.Log("Down_Left");
                 }
             }
         }
@@ -70,7 +70,7 @@ public class Cube_Lerping : MonoBehaviour
             //Debug.Log("is moving");
             if (cube.transform.position == newPosition)
             {
-                position = callerIds.Dequeue();
+                position = new int[] { nextposition[0], position[1] + nextposition[1] };
             }
         }
         else if (callerIds.Count != 0)
