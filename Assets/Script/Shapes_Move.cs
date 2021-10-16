@@ -106,15 +106,15 @@ public class Shapes_Move : MonoBehaviour
 
             if (is_limit == false)
             {
-                foreach (var item in shapes)
+                for (int i = 0; i < 3; i++)
                 {
-                    Debug.Log(shapes_positions[item.transform.GetSiblingIndex(), 0]);
-                    if (shapes_positions[item.transform.GetSiblingIndex(), 0] == currentmove[0])
+                    Debug.Log(shapes_positions[shapes[currentmove[0], i].transform.GetSiblingIndex(), 0]);
+                    if (shapes_positions[shapes[currentmove[0], i].transform.GetSiblingIndex(), 0] == currentmove[0])
                     {
-                        nextposition = positionArray[shapes_positions[item.transform.GetSiblingIndex(), 0], shapes_positions[item.transform.GetSiblingIndex(), 1] + currentmove[1]];
+                        nextposition = positionArray[shapes_positions[shapes[currentmove[0], i].transform.GetSiblingIndex(), 0], shapes_positions[shapes[currentmove[0], i].transform.GetSiblingIndex(), 1] + currentmove[1]];
 
-                        item.transform.position = Vector3.MoveTowards(item.transform.position, nextposition, Time.deltaTime * smooth);
-                        if (item.transform.position == nextposition)
+                        shapes[currentmove[0], i].transform.position = Vector3.MoveTowards(shapes[currentmove[0], i].transform.position, nextposition, Time.deltaTime * smooth);
+                        if (shapes[currentmove[0], i].transform.position == nextposition)
                         {
                             currentmove = new int[] { 0, 0 };
                         }
