@@ -31,7 +31,6 @@ public class Shapes_Move : MonoBehaviour
         {
             shapes_aux = this.gameObject.transform.GetChild(i).gameObject;
             shapes_positions_aux = shapes_aux.GetComponent<Shape_Properties>().position;
-            Debug.Log(i + "," + shapes_positions_aux[0] + "," + shapes_positions_aux[1]);
             shapes_positions[i, 0] = shapes_positions_aux[0];
             shapes_positions[i, 1] = shapes_positions_aux[1];
             shapes[shapes_positions[i, 0], shapes_positions[i, 1] - 1] = shapes_aux;
@@ -45,7 +44,6 @@ public class Shapes_Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(shapes_positions_aux[0] + "," + shapes_positions_aux[1]);
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -56,40 +54,21 @@ public class Shapes_Move : MonoBehaviour
                 if (touch.position.x > W_middle && touch.position.y > H_middle)
                 {
                     moves.Enqueue(new int[] { 0, -1 });
-                    Debug.Log("Up_Right");
                 }
                 if (touch.position.x > W_middle && touch.position.y < H_middle)
                 {
                     moves.Enqueue(new int[] { 1, -1 });
-                    Debug.Log("Down_Right");
                 }
                 if (touch.position.x < W_middle && touch.position.y > H_middle)
                 {
                     moves.Enqueue(new int[] { 1, 1 });
-                    Debug.Log("Up_left");
                 }
                 if (touch.position.x < W_middle && touch.position.y < H_middle)
                 {
                     moves.Enqueue(new int[] { 0, 1 });
-                    Debug.Log("Down_Left");
                 }
             }
         }
-        /* if (cube.transform.position != nextposition)
-        {
-            cube.transform.position = Vector3.MoveTowards(cube.transform.position, nextposition, Time.deltaTime * smooth);
-            /Debug.Log("is moving");
-            if (cube.transform.position == nextposition)
-            {
-                position = new int[] { nextmove[0], position[1] + nextmove[1] };
-            }
-        }
-        else if (moves.Count != 0)
-        {
-            Debug.Log("stopped moving");
-            nextmove = moves.Dequeue();
-            nextposition = positionArray[nextmove[0], position[1] + nextmove[1]];
-        } */
 
         if (moves.Count != 0)
         {
@@ -112,7 +91,6 @@ public class Shapes_Move : MonoBehaviour
 
         if (currentmove[0] != 0 || currentmove[1] != 0)
         {
-            Debug.Log("we here");
             for (int i = 0; i < 5; i++)
             {
                 if (shapes_positions[i, 0] == currentmove[0] && (shapes_positions[i, 1] == 0 || shapes_positions[i, 1] == 4))
@@ -130,6 +108,7 @@ public class Shapes_Move : MonoBehaviour
             {
                 foreach (var item in shapes)
                 {
+                    Debug.Log(shapes_positions[item.transform.GetSiblingIndex(), 0]);
                     if (shapes_positions[item.transform.GetSiblingIndex(), 0] == currentmove[0])
                     {
                         nextposition = positionArray[shapes_positions[item.transform.GetSiblingIndex(), 0], shapes_positions[item.transform.GetSiblingIndex(), 1] + currentmove[1]];
